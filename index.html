@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yakumo // Yakumo_Iko</title>
     <style>
-        body {
+        /* Импорт шрифтов для русского языка */
+        @import url('https://fonts.googleapis.com/css2?family=PT+Mono&family=Roboto+Mono:wght@400;500&display=swap');
+        
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PT Mono', 'Roboto Mono', 'Courier New', monospace;
+            background-color: #1a1211;
+            color: #cf7272;
             position: relative;
-            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
         
         .background-image {
@@ -19,106 +33,212 @@
             z-index: -1;
         }
         
-        /* Стили плашки с полупрозрачностью и размытием */
+        /* Мобильный фон (скрыт по умолчанию) */
+        .mobile-background {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
         .overlay {
-            padding: 20px 0px;
-            background-color: rgba(32, 23, 22, 0.7); /* полупрозрачный */
-            backdrop-filter: blur(5px); /* размытие фона */
-            -webkit-backdrop-filter: blur(5px); /* для Safari */
+            padding: 20px 0;
+            background-color: rgba(32, 23, 22, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             position: relative;
             margin: 50px auto;
-            width: 700px;
-            max-width: 800px;
-            font-family: 'Courier New', monospace;
-            color: #cf7272;
+            width: 90%;
+            max-width: 700px;
             border-left: 2px solid #cf7272;
             border-right: 2px solid #cf7272;
-            box-sizing: border-box;
-            font-size: 15px;
             min-height: 500px;
-        }
-
-        .corner-gif {
-            position: absolute;
-            top: 40px;
-            right: 40px;
-            width: 100px;
-            height: auto;
-            border-radius: 5px;
-        }
-
-        .corner-ascii {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 14px;
-            line-height: 14px;
-            color: #cf7272;
-            text-align: left;
-            white-space: pre;
-            font-family: 'Courier New', monospace;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
 
         .title {
             position: absolute;
             top: 20px;
             left: 50%;
-            transform: translate(-50%, -50%);
-            margin: 0;
+            transform: translateX(-50%);
             text-align: center;
             color: #cf7272;
+            font-size: 1.5rem;
+            font-weight: 500;
+            text-shadow: 0 0 5px rgba(207, 114, 114, 0.5);
+            width: 100%;
+            padding: 0 20px;
         }
 
-        /* Стиль для вашего контента */
         .content {
             position: relative;
             z-index: 1;
             color: #cf7272;
             padding: 80px 20px 20px 20px;
             text-align: center;
+            line-height: 1.6;
+        }
+
+        .content p {
+            margin-bottom: 15px;
+        }
+
+        .separator {
+            margin: 20px 0;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .links {
+            text-align: left;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .link-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .link-label {
+            flex: 1;
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        .link-value {
+            flex: 2;
+            text-align: left;
+        }
+
+        a {
+            color: #922929;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #cf7272;
+            text-decoration: underline;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media screen and (max-width: 768px) {
+            .background-image {
+                display: none;
+            }
+            
+            .mobile-background {
+                display: block;
+            }
+            
+            .overlay {
+                width: 95%;
+                margin: 20px auto;
+                padding: 15px 0;
+                min-height: auto;
+            }
+            
+            .title {
+                font-size: 1.3rem;
+                top: 15px;
+            }
+            
+            .content {
+                padding: 70px 15px 15px 15px;
+            }
+            
+            .links {
+                max-width: 100%;
+            }
+            
+            .link-item {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 15px;
+            }
+            
+            .link-label, .link-value {
+                text-align: left;
+                padding-right: 0;
+                width: 100%;
+            }
+            
+            .link-label {
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Фон для десктопов -->
     <img src="1659754256_12-kartinkin-net-p-itachi-uchikha-oboi-na-telefon-krasivo-12.jpg" class="background-image" alt="Background">
     
+    <!-- Фон для мобильных устройств -->
+    <img src="https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="mobile-background" alt="Mobile Background">
+    
     <div class="overlay">
-        
         <div class="title">Yakumo // Yakumo_Iko</div>
         
         <div class="content">
-            <!-- Ваш контент здесь -->
             <p>Дароу,</p>
             <p>Я Андрей aka Yakumo</p>
             <p>Умею писать скрипты для CustomNPC</p>
-            <p><strong>&lt;/- - -/&gt;</strong><br></p>
-            <p>**обо мне:**</p>
-            <p>др:             14//06//20xx</p>
-            <p>играю в:        <b>PUBG Mobile</b>, и <b>Mobile Legends</b></p>
-            <p><strong>&lt;/- - -/&gt;</strong></p>
-            <p>**где меня найти:**</p>
-            <p style="font-family: 'Courier New', monospace; color: #cf7272; margin: 0px 0;">
-            telegram: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="https://t.me/yakumoiko" 
-                   target="_blank" 
-                   style="color: #922929; text-decoration: none; font-weight: bold;">@yakumoiko
-                </a>
-            </p>
-            <p style="font-family: 'Courier New', monospace; color: #cf7272; margin: 0px 0;">
-            discord:   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="" 
-                   target="_blank" 
-                   style="color: #922929; text-decoration: none; font-weight: bold;">@yakumo_iko
-                </a>
-            </p>
-            <p style="font-family: 'Courier New', monospace; color: #cf7272; margin: 0px 0;">
-             стиль взял у: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                <a href="https://boryasik1029.github.io/" 
-                   target="_blank" 
-                   style="color: #922929; text-decoration: none; font-weight: bold;">@laftiq 
-                </a>
-            </p>
+            
+            <div class="separator">&lt;/- - -/&gt;</div>
+            
+            <p><strong>обо мне:</strong></p>
+            <p>др: 14//06//20xx</p>
+            <p>играю в: <b>PUBG Mobile</b>, и <b>Mobile Legends</b></p>
+            
+            <div class="separator">&lt;/- - -/&gt;</div>
+            
+            <p><strong>где меня найти:</strong></p>
+            
+            <div class="links">
+                <div class="link-item">
+                    <span class="link-label">telegram:</span>
+                    <span class="link-value">
+                        <a href="https://t.me/yakumoiko" target="_blank">@yakumoiko</a>
+                    </span>
+                </div>
+                
+                <div class="link-item">
+                    <span class="link-label">discord:</span>
+                    <span class="link-value">
+                        <a href="" target="_blank">@yakumo_iko</a>
+                    </span>
+                </div>
+                
+                <div class="link-item">
+                    <span class="link-label">стиль взял у:</span>
+                    <span class="link-value">
+                        <a href="https://boryasik1029.github.io/" target="_blank">@laftiq</a>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Проверка на мобильное устройство
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                   (window.innerWidth <= 768);
+        }
+        
+        // Если мобильное устройство, можно добавить дополнительную логику
+        if (isMobileDevice()) {
+            document.body.classList.add('mobile');
+        }
+    </script>
 </body>
 </html>
