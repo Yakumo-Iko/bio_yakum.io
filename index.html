@@ -87,6 +87,17 @@
             margin-bottom: 15px;
         }
 
+        /* Стили для GIF справа */
+        .corner-gif {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 100px;
+            height: auto;
+            border-radius: 5px;
+            z-index: 2;
+        }
+
         .separator {
             margin: 20px 0;
             font-weight: bold;
@@ -155,6 +166,15 @@
                 padding: 70px 15px 15px 15px;
             }
             
+            .corner-gif {
+                position: relative;
+                top: auto;
+                right: auto;
+                width: 80px;
+                margin: 10px auto;
+                display: block;
+            }
+            
             .links {
                 max-width: 100%;
             }
@@ -176,6 +196,13 @@
                 font-weight: bold;
             }
         }
+
+        /* Дополнительные стили для очень маленьких экранов */
+        @media screen and (max-width: 480px) {
+            .corner-gif {
+                width: 60px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -187,6 +214,9 @@
     
     <div class="overlay">
         <div class="title">Yakumo // Yakumo_Iko</div>
+        
+        <!-- GIF теперь позиционируется абсолютно и не мешает тексту -->
+        <img src="https://media.tenor.com/o7LO99ykfccAAAAj/anime-naruto.gif" class="corner-gif" alt="GIF">
         
         <div class="content">
             <p>Дароу,</p>
