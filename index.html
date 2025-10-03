@@ -87,7 +87,7 @@
             margin-bottom: 15px;
         }
 
-        /* Стили для GIF справа */
+        /* Стили для GIF на десктопе */
         .corner-gif {
             position: absolute;
             top: 40px;
@@ -98,16 +98,20 @@
             z-index: 2;
         }
 
-        .separator {
-            margin: 20px 0;
-            font-weight: bold;
-            letter-spacing: 2px;
+        /* Стили для GIF на мобильных */
+        .mobile-gif {
+            display: none;
+            width: 80px;
+            height: auto;
+            border-radius: 5px;
+            margin-left: 20px;
         }
 
         .links {
             text-align: left;
             max-width: 300px;
             margin: 0 auto;
+            position: relative;
         }
 
         .link-item {
@@ -126,6 +130,18 @@
         .link-value {
             flex: 2;
             text-align: left;
+        }
+
+        /* Контейнер для ссылок с GIF на мобильных */
+        .links-container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .links-wrapper {
+            flex: 1;
         }
 
         a {
@@ -166,12 +182,12 @@
                 padding: 70px 15px 15px 15px;
             }
             
+            /* Скрываем десктопную GIF и показываем мобильную */
             .corner-gif {
-                position: relative;
-                top: auto;
-                right: auto;
-                width: 80px;
-                margin: 10px auto;
+                display: none;
+            }
+            
+            .mobile-gif {
                 display: block;
             }
             
@@ -180,19 +196,18 @@
             }
             
             .link-item {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row;
+                align-items: center;
                 margin-bottom: 15px;
             }
             
             .link-label, .link-value {
                 text-align: left;
                 padding-right: 0;
-                width: 100%;
             }
             
             .link-label {
-                margin-bottom: 5px;
+                min-width: 120px;
                 font-weight: bold;
             }
         }
@@ -201,6 +216,21 @@
         @media screen and (max-width: 480px) {
             .corner-gif {
                 width: 60px;
+            }
+            
+            .mobile-gif {
+                width: 60px;
+            }
+            
+            .links-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .mobile-gif {
+                margin-left: 0;
+                margin-top: 10px;
             }
         }
     </style>
@@ -215,7 +245,7 @@
     <div class="overlay">
         <div class="title">Yakumo // Yakumo_Iko</div>
         
-        <!-- GIF теперь позиционируется абсолютно и не мешает тексту -->
+        <!-- GIF для десктопа -->
         <img src="https://media.tenor.com/o7LO99ykfccAAAAj/anime-naruto.gif" class="corner-gif" alt="GIF">
         
         <div class="content">
@@ -233,27 +263,35 @@
             
             <p><strong>где меня найти:</strong></p>
             
-            <div class="links">
-                <div class="link-item">
-                    <span class="link-label">telegram:</span>
-                    <span class="link-value">
-                        <a href="https://t.me/yakumoiko" target="_blank">@yakumoiko</a>
-                    </span>
+            <!-- Контейнер для ссылок и мобильной GIF -->
+            <div class="links-container">
+                <div class="links-wrapper">
+                    <div class="links">
+                        <div class="link-item">
+                            <span class="link-label">telegram:</span>
+                            <span class="link-value">
+                                <a href="https://t.me/yakumoiko" target="_blank">@yakumoiko</a>
+                            </span>
+                        </div>
+                        
+                        <div class="link-item">
+                            <span class="link-label">discord:</span>
+                            <span class="link-value">
+                                <a href="" target="_blank">@yakumo_iko</a>
+                            </span>
+                        </div>
+                        
+                        <div class="link-item">
+                            <span class="link-label">стиль взял у:</span>
+                            <span class="link-value">
+                                <a href="https://boryasik1029.github.io/" target="_blank">@laftiq</a>
+                            </span>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="link-item">
-                    <span class="link-label">discord:</span>
-                    <span class="link-value">
-                        <a href="" target="_blank">@yakumo_iko</a>
-                    </span>
-                </div>
-                
-                <div class="link-item">
-                    <span class="link-label">стиль взял у:</span>
-                    <span class="link-value">
-                        <a href="https://boryasik1029.github.io/" target="_blank">@laftiq</a>
-                    </span>
-                </div>
+                <!-- GIF для мобильных -->
+                <img src="https://media.tenor.com/o7LO99ykfccAAAAj/anime-naruto.gif" class="mobile-gif" alt="GIF">
             </div>
         </div>
     </div>
